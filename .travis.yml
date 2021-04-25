@@ -1,0 +1,22 @@
+sudo: required
+services:
+ - docker
+  
+before_install:
+ - docker build -t dheerajmportal/multi-docker-test -f ./client/Dockerfile.dev ./client
+
+script:
+ - docker run -e CI=true dheerajmportal/multi-docker-test npm run test
+
+after_success:
+ - docker build -t dheerajmportal/multi-client ./client
+ - docker build -t dheerajmportal/multi-api ./server
+ - docker build -t dheerajmportal/multi-nginx ./nginx
+ - docker build -t dheerajmportal/multi-worker ./worker
+#Login to docker-cli
+ - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+# take those images and push into docker Hub
+ - docker push dheerajmportal/multi-client
+ - docker push dheerajmportal/multi-api
+ - docker push dheerajmportal/multi-nginx
+ - docker push dheerajmportal/multi-worker
