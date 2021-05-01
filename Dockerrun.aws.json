@@ -1,0 +1,37 @@
+{
+    "AWSEBDockerrunVersion":2,
+    "containerDefinitions":[
+        {
+            "name": "client",
+            "image":"dheerajmportal/multi-client",
+            "hostname": "client",
+            "essential":false
+        },
+        {
+            "name": "server",
+            "image":"dheerajmportal/multi-api",
+            "hostname": "api",
+            "essential":false
+        },
+        {
+            "name": "worker",
+            "image":"dheerajmportal/multi-worker",
+            "hostname": "worker",
+            "essential":false
+        },
+        {
+            "name": "nginx",
+            "image":"dheerajmportal/multi-nginx",
+            "hostname": "nginx",
+            "essential":true,
+            "portMappings": [
+                {
+                    "hostPort":"80",
+                    "containerPort":80
+                }
+            ],
+            "links": ["client","server"]
+
+        }
+    ]
+}
