@@ -67,7 +67,7 @@ class Fib extends Component {
           <button>Submit</button>
         </form>
 
-        <h3>Indexes I have seen Shri Shri 1008 Maha Madaleshawar Nubi Ullu UKP's :</h3>
+        <h3>Indexes I have seen Shri Shri 1008 Maha Madaleshawar Nubi Ullu  :</h3>
         {this.renderSeenIndexes()}
 
         <h3>Calculated Values:</h3>
