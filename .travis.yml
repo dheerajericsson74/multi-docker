@@ -3,6 +3,8 @@ services:
  - docker
   
 before_install:
+ - gem update --system
+ - gem --version
  - docker build -t dheerajmportal/multi-docker-test -f ./client/Dockerfile.dev ./client
 
 script:
